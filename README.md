@@ -5,7 +5,7 @@ DRAGON BALL FIGHTERZ じゃんけんバトル
 - ドラゴンボールの世界観をモチーフにした、キャラクター選択型のじゃんけんバトルゲームです。
 
 ## ③アプリのデプロイURL
-- 
+- https://github.com/yoneken1012/js2_yonemoto_19
 
 ## ④アプリのログイン用IDまたはPassword（ある場合）
 - ID: 今回なし
