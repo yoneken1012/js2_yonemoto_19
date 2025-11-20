@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAGON BALL Z JANKEN BATTLE</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 1. イントロ画面 -->
+<section id="intro_screen" class="screen active">
+    <div class="intro_container">
+        <img src="img/DBJB_opening.png" alt="">
+        <button id="start_btn" class="main_btn">START</button>
+    </div>
+</section>
+
+<!-- 2. キャラ選択画面 -->
+ <section id="character_select" class="screen">
+
+    <h2 class="screen_title">Z戦士を選んでバトルへ進め!!</h2>
+
+    <div class="character_list">
+
+        <div class="character_card" data-char="goku">
+            <img src="img/goku.png" alt="孫悟空">
+            <div class="name">孫悟空</div>
+        </div>
+
+        <div class="character_card" data-char="vegeta">
+            <img src="img/vegeta.png" alt="ベジータ">
+            <div class="name">ベジータ</div>
+        </div>
+
+        <div class="character_card" data-char="piccoro">
+            <img src="img/piccoro.png" alt="ピッコロ">
+            <div class="name">ピッコロ</div>
+        </div>
+
+    </div>
+
+    <button id="select_ok" class="main_btn" disabled>
+        START TO BATTLE
+    </button>
+
+ </section>
+
+ <!-- 3. バトル画面 -->
+<section id="battle_screen" class="screen">
+
+ <!-- バトルエリア（上段） -->
+<div class="battle_area">
+
+  <!-- 背景 -->
+   <div class="battle_bg"></div>
+  
+  <!-- キャラ -->
+   <div class="fighters">
+    <div class="fighter player">
+        <img id="player_img" src="" alt="player">
+        <div class="aura_layer" id="player_aura"></div>
+    </div>
+    <div class="fighter cpu">
+        <img id="cpu_img" src="img/vegeta.png" alt="cpu">
+        <div class="aura_layer" id="cpu_aura"></div>
+    </div>
+   </div>
+
+  <!-- 衝撃波エフェクト -->
+   <div class="effect_layer" id="effect_layer"></div>
+</div>
+
+  <!-- 手の表示 -->
+   <div class="hands">
+    <div class="player_hand">-</div>
+      <!-- 結果表示 -->
+       <p class="battle_result" id="battle_result">👊 ✌️ 🖐️から選んで相手を攻撃せよ!!</p>
+    <div class="cpu_hand">-</div>
+   </div>
+
+
+
+<!-- ステータスパネル（中段） -->
+ <div class="status_panel">
+
+    <div class="status player_status">
+        <div class="icon">
+            <img id="player_face" src="" alt="">
+        </div>
+        <div class="stats">
+            <p>HP: <span id="player_hp">200</span>/200</p>
+            <div class="hp_bar">
+                <div id="player_hp_bar" class="hp_fill"></div>
+            </div>
+            <p>COMBO: <span id="player_combo">0</span></p>
+        </div>
+    </div>
+
+    <div class="status cpu_status">
+        <div class="icon">
+            <img id="cpu_face" src="" alt="">
+        </div>
+        <div class="stats">
+            <p>HP: <span id="cpu_hp">200</span>/200</p>
+            <div class="hp_bar">
+                <div id="cpu_hp_bar" class="hp_fill"></div>
+            </div>
+            <p>COMBO: <span id="cpu_combo">0</span></p>
+        </div>
+    </div>
+
+ </div>
+
+<!-- 手の選択エリア（下段） -->
+ <div class="card_controls">
+    <button class="card_btn" data-hand="rock">👊 攻（グー）</button>
+    <button class="card_btn" data-hand="scissors">✌️ 技（チョキ）</button>
+    <button class="card_btn" data-hand="paper">🖐️ 防（パー）</button>
+ </div>
+
+<!-- 下部メニュー -->
+ <div class="bottom_menu">
+    <button id="reset" class="menu_btn">RESET</button>
+    <button id="change_character" class="menu_btn">CHANGE CHARACTER</button>
+ </div>
+
+</section>
+
+<!-- test.jsが後 -->
+<script src="js/app.js"></script>
+
+</body>
+</html>

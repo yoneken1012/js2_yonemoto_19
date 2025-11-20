@@ -1,0 +1,314 @@
+.screen {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+/* イントロ画面の背景画像 */
+#intro_screen {
+    background-size: cover;          /* 画面全体にフィット */
+    background-position: center;     /* 中央に配置 */
+    background-repeat: no-repeat;    /* 繰り返しなし */
+    width: 100%;
+    height: 100vh;                   /* 画面いっぱいの高さ */
+}
+
+.intro_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main_btn {
+    font-size: 40px;
+    margin-top: -60px;
+
+}
+
+#character_select,
+#battle_screen {
+    position: relative;
+    min-height: 100vh; /* ★ 画面全体にする */
+    background-image: url("../img/arena.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#character_select::before,
+#battle_screen::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; と同じ */
+    background: rgba(255, 255, 255, 0.65); /* ★ 白で薄くする（明るく）*/
+    /* background: rgba(0, 0, 0, 0.3);  黒で薄くする（暗く）*/
+    z-index: 0;
+}
+
+#character_select > *,
+#battle_screen > * {
+    position: relative;
+    z-index: 1; /* コンテンツを前面に */
+}
+
+.screen_title {
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.character_list {
+    display: flex;
+    justify-content: center;  /* 横中央寄せ */
+    gap: 30px;                /* カード間の余白 */
+    margin-top: 20px;
+}
+
+/* キャラカードの基本 */
+.character_card {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    padding: 10px;
+    transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
+    position: relative;
+    align-items: flex;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+
+}
+
+.character_card img {
+    width: auto;
+    height: 550px;
+}
+
+/* 選択されたカード */
+.character_card.selected {
+    transform: scale(1.05);
+    border: 3px solid #00aaff;
+    box-shadow: 0 0 20px #00aaff;
+}
+
+/* 背後オーラ */
+.character_card.selected::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border-radius: 12px;
+    background: radial-gradient(
+        circle,
+        rgba(0,170,255,0.6) 0%,
+        rgba(0,170,255,0.3) 40%,
+        rgba(0,170,255,0) 70%
+    );
+    z-index: -1;
+    animation: auraPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes auraPulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.2); opacity: 0.6; }
+}
+
+#select_ok {
+    display: block;
+    margin: 0 auto;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+/* バトル画面：キャラを横並びに */
+.fighters {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* 各キャラ（プレイヤー/CPU）を中央寄せ */
+.fighter {
+    display: flex;
+    flex-direction: column; /* 画像の上にオーラを重ねる */
+    align-items: center;
+    position: relative;
+}
+
+/* バトル画面のキャラ画像サイズ調整 */
+.fighter img {
+    width: auto;    /* ← 好きなサイズに変更可能 */
+    height: 450px;
+}
+
+.battle_result {
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin: 10px 120px;
+}
+
+.hands {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+}
+
+/* HPバー枠 */
+.hp_bar {
+    width: 200px;
+    height: 12px;
+    background: #444;
+    border: 1px solid #fff;
+    margin-top: 4px;
+    position: relative;
+}
+
+/* 残りHP量（伸縮する部分） */
+.hp_fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff2a, #00cc00);
+    width: 100%; /* 初期値：満タン */
+    transition: width 0.2s linear; /* アニメーション */
+}
+
+/* ステータスパネルを横並びに */
+.status_panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* ステータスカードのレイアウトを整える */
+.status {
+    width: 45%; /* プレイヤー／CPUを半分ずつに */
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.status .stats {
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.icon {
+    width: 260px;
+}
+
+.card_controls {
+    display: flex;
+    justify-content: center;
+}
+
+.card_btn {
+    font-size: 25px;
+    margin: 0px 10px;
+    font-weight: bold;
+}
+
+.bottom_menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.menu_btn {
+    font-size: 30px;
+    margin: 0px 10px;
+}
+
+/* ====== 攻撃演出：画面揺れ ====== */
+.shake {
+    animation: shake 0.25s;
+}
+
+@keyframes shake {
+    0%   { transform: translate(0px, 0px); }
+    20%  { transform: translate(-8px, 0px); }
+    40%  { transform: translate(8px, 0px); }
+    60%  { transform: translate(-8px, 0px); }
+    80%  { transform: translate(8px, 0px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+/* ====== 攻撃演出：赤フラッシュ ====== */
+.hit_flash {
+    animation: hitflash 0.25s;
+}
+
+@keyframes hitflash {
+    0%   { filter: brightness(2) contrast(2) saturate(2) hue-rotate(-20deg); }
+    100% { filter: none; }
+}
+
+/* ===== 衝撃波：白い円が広がる ===== */
+.effect_layer {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.shockwave {
+    animation: shock 0.4s ease-out;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+}
+
+@keyframes shock {
+    0% {
+        width: 0px;
+        height: 0px;
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        width: 250px;
+        height: 250px;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* ===== オーラ ===== */
+.aura_layer {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle,
+        rgba(255,255,0,0.8) 0%,
+        rgba(255,165,0,0.4) 45%,
+        rgba(255,165,0,0) 70%
+    );
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.aura_on {
+    animation: aura 0.6s ease-out;
+}
+
+@keyframes aura {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.6); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
+}
