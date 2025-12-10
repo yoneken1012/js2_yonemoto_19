@@ -1,3 +1,27 @@
+// --- Firebase modules import ---
+import { initializeApp } 
+  from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+
+import { 
+  getDatabase, ref, push, set, onChildAdded, remove 
+} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+
+// --- Firebase config ---
+const firebaseConfig = {
+  apiKey: "AIzaSyBpCKLQiz-6pwrQUQSnm_I6evzzQbKmBlQ",
+  authDomain: "dev30-sat19.firebaseapp.com",
+  databaseURL: "https://dev30-sat19-default-rtdb.firebaseio.com",
+  projectId: "dev30-sat19",
+  storageBucket: "dev30-sat19.firebasestorage.app",
+  messagingSenderId: "562773578850",
+  appId: "1:562773578850:web:75708defc0af9c57392d3b"
+};
+
+// --- Firebase initialize ---
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const dbRef = ref(db, "chat");
+
 // 画面要素の取得
 const introScreen = document.getElementById("intro_screen")
 const selectScreen = document.getElementById("character_select")
