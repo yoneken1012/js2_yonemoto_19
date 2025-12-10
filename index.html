@@ -130,29 +130,6 @@
 
 </section>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
-        import { getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved }
-            from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBpCKLQiz-6pwrQUQSnm_I6evzzQbKmBlQ",
-            authDomain: "dev30-sat19.firebaseapp.com",
-            projectId: "dev30-sat19",
-            storageBucket: "dev30-sat19.firebasestorage.app",
-            messagingSenderId: "562773578850",
-            appId: "1:562773578850:web:75708defc0af9c57392d3b"
-        };
-        // Githubに課題をアップロードする際にはapiKey-appIdは一旦消す！（重大なセキュリティインシデントを防ぐため）
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app); //RealtimeDBに接続
-        const dbRef = ref(db, "chat"); //RealtimeDB内の"chat"を使う
-    </script>
-
-
 <!-- test.jsが後 -->
 <script type="module" src="js/app.js"></script>
 
