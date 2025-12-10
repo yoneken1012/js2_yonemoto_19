@@ -169,6 +169,18 @@ document.querySelectorAll(".card_btn").forEach(btn => {
 
             document.getElementById("cpu_hp").textContent = cpuHP;
             document.getElementById("battle_result").textContent = `You Win!! 相手に${dmg}のダメージ`;
+
+            // Firebase送信ポイント
+            const newPostRef = push(dbRef);
+            set(newPostRef, {
+                name: "Player",
+                result: "win",
+                playerHand: player,
+                cpuHand: cpu,
+                time: Date.now()
+            });
+            // Firebaseここまで
+
         }
         else if (result === "lose") {
 
@@ -194,6 +206,18 @@ document.querySelectorAll(".card_btn").forEach(btn => {
 
             document.getElementById("player_hp").textContent = playerHP;
             document.getElementById("battle_result").textContent = `You Lose... あなたに${dmg}のダメージ`;
+
+            // Firebase送信ポイント
+            const newPostRef = push(dbRef);
+            set(newPostRef, {
+                name: "Player",
+                result: "lose",
+                playerHand: player,
+                cpuHand: cpu,
+                time: Date.now()
+            });
+            // Firebaseここまで
+
         } else {
             // あいこ 両方COMBOリセット
             playerCombo = 0;
@@ -203,10 +227,18 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             document.getElementById("cpu_combo").textContent = cpuCombo;
 
             document.getElementById("battle_result").textContent = "Draw";
+
+            // Firebase送信ポイント
+            const newPostRef = push(dbRef);
+            set(newPostRef, {
+                name: "Player",
+                result: "draw",
+                playerHand: player,
+                cpuHand: cpu,
+                time: Date.now()
+            });
+            // Firebaseここまで
         }
-
-
-
 
         // HPが0になったら勝敗確定メッセージと共にキャラ選択画面へ戻す
         if (playerHP === 0) {
@@ -335,3 +367,30 @@ function aura(targetId) {
         auraLayer.classList.remove("aura_on");
     }, 600);
 }
+
+// Firebase RealtimeDB：リアルタイム受信
+onChildAdded(dbRef, function (data){
+    const v = data.val(); // 内容
+    //keyの部分は課題もしくは自身で使用するためのヒント
+    const key = data.key; // 削除に必要なキー
+
+    let html = `
+        <div class = "msg">
+            <div class = "bubble">
+                <strong>${v.name}:</strong> ${v.result} (${v.playerHand} vs ${v.cpuHand})
+            </div>
+            <button class = "del" data-key = "${key}">削除</button>
+        </div>
+    `;
+
+    document.querySelector("#output").insertAdjacentHTML("beforeend", html);
+});
+
+// 削除イベント
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("del")) {
+        const key = e.target.dataset.key;
+        remove(ref(db, "chat/" + key));
+    }
+});
+
