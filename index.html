@@ -147,7 +147,10 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app); //RealtimeDBに接続
         const dbRef = ref(db, "chat"); //RealtimeDB内の"chat"を使う
+    </script>
 
+<!-- チャット履歴表示エリア -->
+<div id="output" class="chat_area"></div>
 
 <!-- test.jsが後 -->
 <script src="js/app.js"></script>
