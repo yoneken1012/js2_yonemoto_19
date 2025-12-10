@@ -10,6 +10,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyBpCKLQiz-6pwrQUQSnm_I6evzzQbKmBlQ",
   authDomain: "dev30-sat19.firebaseapp.com",
+  databaseURL: "https://dev30-sat19-default-rtdb.firebaseio.com",
   projectId: "dev30-sat19",
   storageBucket: "dev30-sat19.firebasestorage.app",
   messagingSenderId: "562773578850",
@@ -196,7 +197,7 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             const newPostRef = push(dbRef);
             set(newPostRef, {
                 name: "プレイヤー",
-                result: "勝ち",
+                result: "win",
                 playerHand: player,
                 cpuHand: cpu,
                 time: Date.now()
@@ -233,7 +234,7 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             const newPostRef = push(dbRef);
             set(newPostRef, {
                 name: "プレイヤー",
-                result: "負け",
+                result: "lose",
                 playerHand: player,
                 cpuHand: cpu,
                 time: Date.now()
@@ -254,7 +255,7 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             const newPostRef = push(dbRef);
             set(newPostRef, {
                 name: "プレイヤー",
-                result: "あいこ",
+                result: "draw",
                 playerHand: player,
                 cpuHand: cpu,
                 time: Date.now()
@@ -304,6 +305,15 @@ function handLabel(hand) {
         case "rock": return "👊";
         case "scissors": return "✌️";
         case "paper": return "🖐️";
+    }
+}
+
+function resultLabel(r){
+    switch(r){
+        case "win": return "勝ち";
+        case "lose": return "負け";
+        case "draw": return "あいこ";
+        default: return r;
     }
 }
 
@@ -397,7 +407,7 @@ onChildAdded(dbRef, function (data){
     const key = data.key; // 削除に必要なキー
 
     // 左右判定 (プレイヤーが左)
-    const isplayer = v.name === "プレイヤー"
+    const isPlayer = v.name === "プレイヤー";
 
     // 絵文字変換
     const playerEmoji = handLabel(v.playerHand);
@@ -408,9 +418,9 @@ onChildAdded(dbRef, function (data){
 
     // LINE風
     let html = `
-        <div class = "line_msg ${isPlayer ? "left" : "right"}" id = "${key}">
-            <div class = "line_bubble">
-                ${resultText} (${playerEmoji} vs ${cpuEmoji})
+        <div class="msg" id="${key}">
+            <div class = "bubble">
+                <strong>${v.name}:</strong> ${v.result}(${playerEmoji} vs ${cpuEmoji})
             </div>
             <button class = "del" data-key = "${key}">削除</button>
         </div>
