@@ -10,7 +10,6 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyBpCKLQiz-6pwrQUQSnm_I6evzzQbKmBlQ",
   authDomain: "dev30-sat19.firebaseapp.com",
-  databaseURL: "https://dev30-sat19-default-rtdb.firebaseio.com",
   projectId: "dev30-sat19",
   storageBucket: "dev30-sat19.firebasestorage.app",
   messagingSenderId: "562773578850",
@@ -420,7 +419,7 @@ onChildAdded(dbRef, function (data){
     let html = `
         <div class="msg" id="${key}">
             <div class = "bubble">
-                <strong>${v.name}:</strong> ${v.result}(${playerEmoji} vs ${cpuEmoji})
+                ${resultText} (${playerEmoji} vs ${cpuEmoji})
             </div>
             <button class = "del" data-key = "${key}">削除</button>
         </div>
