@@ -10,7 +10,6 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyBpCKLQiz-6pwrQUQSnm_I6evzzQbKmBlQ",
   authDomain: "dev30-sat19.firebaseapp.com",
-  databaseURL: "https://dev30-sat19-default-rtdb.firebaseio.com",
   projectId: "dev30-sat19",
   storageBucket: "dev30-sat19.firebasestorage.app",
   messagingSenderId: "562773578850",
