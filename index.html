@@ -125,6 +125,9 @@
     <button id="change_character" class="menu_btn">CHANGE CHARACTER</button>
  </div>
 
+ <!-- チャット履歴表示エリア -->
+<div id="output" class="chat_area"></div>
+
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -149,8 +152,6 @@
         const dbRef = ref(db, "chat"); //RealtimeDB内の"chat"を使う
     </script>
 
-<!-- チャット履歴表示エリア -->
-<div id="output" class="chat_area"></div>
 
 <!-- test.jsが後 -->
 <script src="js/app.js"></script>
