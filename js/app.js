@@ -85,7 +85,6 @@ selectOKBtn.addEventListener("click", () => {
     document.getElementById("cpu_hp").textContent = cpuHP;
     document.getElementById("player_combo").textContent = playerCombo;
     document.getElementById("cpu_combo").textContent = cpuCombo;
-    document.getElementById("player_carry").textContent = "OFF";
 
 });
 
