@@ -3,7 +3,7 @@ import { initializeApp }
   from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 
 import { 
-  getDatabase, ref, push, set, onChildAdded, remove 
+  getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved 
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
 // --- Firebase config ---
@@ -195,8 +195,8 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             // Firebase送信ポイント
             const newPostRef = push(dbRef);
             set(newPostRef, {
-                name: "Player",
-                result: "win",
+                name: "プレイヤー",
+                result: "勝ち",
                 playerHand: player,
                 cpuHand: cpu,
                 time: Date.now()
@@ -232,8 +232,8 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             // Firebase送信ポイント
             const newPostRef = push(dbRef);
             set(newPostRef, {
-                name: "Player",
-                result: "lose",
+                name: "プレイヤー",
+                result: "負け",
                 playerHand: player,
                 cpuHand: cpu,
                 time: Date.now()
@@ -253,8 +253,8 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             // Firebase送信ポイント
             const newPostRef = push(dbRef);
             set(newPostRef, {
-                name: "Player",
-                result: "draw",
+                name: "プレイヤー",
+                result: "あいこ",
                 playerHand: player,
                 cpuHand: cpu,
                 time: Date.now()
@@ -397,7 +397,7 @@ onChildAdded(dbRef, function (data){
     const key = data.key; // 削除に必要なキー
 
     let html = `
-        <div class = "msg">
+        <div class = "msg" id = "${key}">
             <div class = "bubble">
                 <strong>${v.name}:</strong> ${v.result} (${v.playerHand} vs ${v.cpuHand})
             </div>
@@ -412,7 +412,12 @@ onChildAdded(dbRef, function (data){
 document.addEventListener("click", function (e) {
     if (e.target.classList.contains("del")) {
         const key = e.target.dataset.key;
-        remove(ref(db, "chat/" + key));
+        remove(ref(db, `/chat/${key}`));
     }
 });
 
+// 画面から消す
+onChildRemoved(dbRef, function(data){
+    const key = data.key;
+    document.getElementById(key)?.remove();
+});
