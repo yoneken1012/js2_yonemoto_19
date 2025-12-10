@@ -396,10 +396,21 @@ onChildAdded(dbRef, function (data){
     //keyの部分は課題もしくは自身で使用するためのヒント
     const key = data.key; // 削除に必要なキー
 
+    // 左右判定 (プレイヤーが左)
+    const isplayer = v.name === "プレイヤー"
+
+    // 絵文字変換
+    const playerEmoji = handLabel(v.playerHand);
+    const cpuEmoji = handLabel(v.cpuHand);
+
+    // 日本語の勝敗ラベル
+    const resultText = resultLabel(v.result);
+
+    // LINE風
     let html = `
-        <div class = "msg" id = "${key}">
-            <div class = "bubble">
-                <strong>${v.name}:</strong> ${v.result} (${v.playerHand} vs ${v.cpuHand})
+        <div class = "line_msg ${isPlayer ? "left" : "right"}" id = "${key}">
+            <div class = "line_bubble">
+                ${resultText} (${playerEmoji} vs ${cpuEmoji})
             </div>
             <button class = "del" data-key = "${key}">削除</button>
         </div>
