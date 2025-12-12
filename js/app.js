@@ -8,12 +8,12 @@ import {
 
 // --- Firebase config ---
 const firebaseConfig = {
-  apiKey: "AIzaSyBpCKLQiz-6pwrQUQSnm_I6evzzQbKmBlQ",
-  authDomain: "dev30-sat19.firebaseapp.com",
-  projectId: "dev30-sat19",
-  storageBucket: "dev30-sat19.firebasestorage.app",
-  messagingSenderId: "562773578850",
-  appId: "1:562773578850:web:75708defc0af9c57392d3b"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 };
 
 // --- Firebase initialize ---
