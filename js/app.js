@@ -195,7 +195,7 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             // Firebase送信ポイント
             const newPostRef = push(dbRef);
             set(newPostRef, {
-                name: "プレイヤー",
+                name: "Player",
                 result: "win",
                 playerHand: player,
                 cpuHand: cpu,
@@ -232,7 +232,7 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             // Firebase送信ポイント
             const newPostRef = push(dbRef);
             set(newPostRef, {
-                name: "プレイヤー",
+                name: "Player",
                 result: "lose",
                 playerHand: player,
                 cpuHand: cpu,
@@ -253,7 +253,7 @@ document.querySelectorAll(".card_btn").forEach(btn => {
             // Firebase送信ポイント
             const newPostRef = push(dbRef);
             set(newPostRef, {
-                name: "プレイヤー",
+                name: "Player",
                 result: "draw",
                 playerHand: player,
                 cpuHand: cpu,
